@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BankAccount;
 
-internal class Account
+public class Account
 {
     /// <summary>
-    /// AccountNumbers must start with 4 digits followed bny a dash and then 5 characters (A - Z) not case sensitive.
+    /// AccountNumbers must start with 4 digits followed by a dash and then 5 characters (A - Z) not case sensitive.
     /// </summary>
-    public required string AccountNumber { get; private set; }
+    public required string AccountNumber { get; init; }
 
     /// <summary>
     /// The current balance of the account.
@@ -25,7 +25,7 @@ internal class Account
     /// <returns></returns>
     public decimal Deposit(decimal amount)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(amount);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
 
         Balance += amount;
         return Balance;
