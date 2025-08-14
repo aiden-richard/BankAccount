@@ -31,6 +31,11 @@ public class Account
         return Balance;
     }
     
+    /// <summary>
+    /// Withdraws money from the account and returns the new balance.
+    /// </summary>
+    /// <param name="amount">The amount to withdraw. Must be a positive value and not more than the account balance.</param>
+    /// <returns>The new balance after withdrawal.</returns>
     public decimal Withdraw(decimal amount)
     {
         if (amount <= 0 || amount > Balance)
