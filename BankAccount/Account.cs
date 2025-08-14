@@ -47,7 +47,4 @@ public class Account
         return Balance;
     }
 
-    public Account()
-    {
-
 }
