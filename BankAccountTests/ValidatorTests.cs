@@ -8,13 +8,73 @@ using System.Threading.Tasks;
 
 namespace BankAccount.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class ValidatorTests
     {
-        [TestMethod()]
-        public void IsWithinRangeTest()
+        [TestMethod]
+        [DataRow(0, 0, 10)]
+        [DataRow(5, 0, 10)]
+        [DataRow(10, 0, 10)]
+        [DataRow(10, 10, 10)]
+        [DataRow(10.000000, 0, 10.00000)]
+        public void IsWithinRange_ValueWithinRangeInclusive_ReturnsTrue(double value, double min, double max)
         {
-            Assert.Fail();
+            // Arrange
+            Validator validator = new Validator();
+
+            // Act
+            bool result = validator.IsWithinRange(value, min, max);
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsWithinRange_ValueLessThanMinBoundary_ReturnsFalse()
+        {
+            // Arrange
+            Validator validator = new Validator();
+
+            double min = 10;
+            double max = 100;
+            double valueToCheck = 5;
+
+            // Act
+            bool result = validator.IsWithinRange(valueToCheck, min, max);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsWithinRange_ValueGreaterThanMaxBoundary_ReturnsFalse()
+        {
+            // Arrange
+            Validator validator = new Validator();
+
+            double min = 10;
+            double max = 100;
+            double valueToCheck = 101;
+
+            // Act
+            bool result = validator.IsWithinRange(valueToCheck, min, max);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsWithinRange_MinGreaterThanMax_ThrowsArgumentException()
+        {
+            // Arrange
+            Validator validator = new Validator();
+
+            double min = 100;
+            double max = 10;
+            double valueToCheck = 10;
+
+            // Assert => Act
+            Assert.ThrowsException<ArgumentException>(() => validator.IsWithinRange(valueToCheck, min, max));
         }
     }
 }
