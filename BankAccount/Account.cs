@@ -22,7 +22,7 @@ public class Account
     /// Deposits money into the account and returns the new balance.
     /// </summary>
     /// <param name="amount">The amount to deposit. Must be a positive value</param>
-    /// <returns></returns>
+    /// <returns>The new account balance after the deposit.</returns>
     public decimal Deposit(decimal amount)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(amount);
