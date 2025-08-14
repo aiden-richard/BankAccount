@@ -16,7 +16,7 @@ namespace BankAccount.Tests
         [DataRow(5, 0, 10)]
         [DataRow(10, 0, 10)]
         [DataRow(10, 10, 10)]
-        [DataRow(10.000000, 0, 10.00000)]
+        [DataRow(10.0000001, 0, 10.000001)]
         public void IsWithinRange_ValueWithinRangeInclusive_ReturnsTrue(double value, double min, double max)
         {
             // Arrange
